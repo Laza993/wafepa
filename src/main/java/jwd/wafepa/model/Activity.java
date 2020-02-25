@@ -1,9 +1,21 @@
 package jwd.wafepa.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "tblActivity")
 public class Activity {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Column(name = "name", nullable = false)
 	private String name;
+	@Column(name = "adminComment")
 	private String adminComment = "dummy data!";
 	
 	

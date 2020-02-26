@@ -5,12 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
-
 import jwd.wafepa.model.Activity;
 import jwd.wafepa.service.ActivityService;
 
-@Service
+
 public class InMemoryActivityService implements ActivityService {
 	
 	private Map<Long, Activity> activities = new HashMap<>();

@@ -3,7 +3,6 @@ package jwd.wafepa.web.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -78,12 +77,9 @@ public class ApiActivityController {
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<ActivityDTO> addActivity(@RequestBody ActivityDTO dto){
-		
+	public ResponseEntity<ActivityDTO> addActivity(@RequestBody ActivityDTO dto){	
 		Activity activity = convertToActivity.convert(dto);
-
 		Activity added = activityServis.save(activity);
-		
 		if(added == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}	
@@ -100,11 +96,5 @@ public class ApiActivityController {
 		Activity persisted = activityServis.save(activity);
 		ActivityDTO persistedDTO = toDTo.convert(persisted);
 		return new ResponseEntity<>(persistedDTO, HttpStatus.OK);
-	}
-	
-	@PostConstruct
-	public void init() {
-		activityServis.save(new Activity("swimming"));
-		activityServis.save(new Activity("running"));
 	}
 }

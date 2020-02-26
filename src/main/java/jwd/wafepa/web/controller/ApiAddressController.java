@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jwd.wafepa.model.Address;
@@ -23,6 +24,18 @@ public class ApiAddressController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Address>> getAll(){
 		List<Address> addresses = addressService.findAll();
+		return new ResponseEntity<>(addresses, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, params = {"street"})
+	public ResponseEntity<List<Address>> getAddressesByStreet(@RequestParam String street){
+		List<Address> addresses = addressService.findAllByStreet(street);
+		return new ResponseEntity<>(addresses, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, params = {"number"})
+	public ResponseEntity<List<Address>> getAddressesByNumber(@RequestParam String number){
+		List<Address> addresses = addressService.findAllByNumber(number);
 		return new ResponseEntity<>(addresses, HttpStatus.OK);
 	}
 	

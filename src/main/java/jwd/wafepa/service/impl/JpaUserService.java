@@ -59,4 +59,14 @@ public class JpaUserService implements UserService {
 		save(new User(null, "laza@gmail.com", "Laza", "Lazarevic", "laza123"));
 		save( new User(null, "kika@gmail.com", "Kika", "Lazarevic", "kika123"));
 	}
+
+	@Override
+	public List<User> findUsersByLastName(String lastName) {
+		return userRepository.findAllByLastName(lastName);
+	}
+
+	@Override
+	public List<User> findUsersByEmail(String email) {
+		return userRepository.findAllByEmail(email);
+	}
 }

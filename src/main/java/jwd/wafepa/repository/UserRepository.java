@@ -16,6 +16,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findByFirstName(String name);
 
 	List<User> findAllByFirstName(String name);
+
+	List<User> findAllByLastName(String lastName);
+
+	List<User> findAllByEmail(String email);
 	
 	
 //	@Query("select r from User r where r.firstName = :name")

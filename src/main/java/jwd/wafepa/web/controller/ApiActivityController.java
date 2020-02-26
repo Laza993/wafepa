@@ -50,22 +50,9 @@ public class ApiActivityController {
 		if(id == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		ActivityDTO dto = toDTo.convert(activity);
-		return new ResponseEntity<>(dto, HttpStatus.OK);
+		return new ResponseEntity<>(toDTo.convert(activity), HttpStatus.OK);
 	}
 	
-	
-//	@RequestMapping(method = RequestMethod.GET, params = {"name"})
-//	public ResponseEntity<ActivityDTO> getActivityByName(@RequestParam String name){
-//		System.out.println(name);
-//		Activity activity = activityServis.findByName(name);
-//		if(activity == null) {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//		System.out.println(activity.toString());
-//		ActivityDTO dto = toDTo.convert(activity);
-//		return new ResponseEntity<>(dto, HttpStatus.OK);
-//	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<ActivityDTO> deleteActivity(@PathVariable Long id){
@@ -73,28 +60,28 @@ public class ApiActivityController {
 		if(deleted == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		ActivityDTO dto = toDTo.convert(deleted);
-		return new ResponseEntity<>(dto, HttpStatus.OK);
+		return new ResponseEntity<>(toDTo.convert(deleted), HttpStatus.OK);
 	}
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<ActivityDTO> addActivity(@RequestBody ActivityDTO dto){	
 		Activity activity = convertToActivity.convert(dto);
 		Activity added = activityServis.save(activity);
 		if(added == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}	
-		ActivityDTO addedDTO = toDTo.convert(added);
-		return new ResponseEntity<>(addedDTO, HttpStatus.CREATED);
+		return new ResponseEntity<>(toDTo.convert(added), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}", consumes="application/json")
 	public ResponseEntity<ActivityDTO> update(@RequestBody ActivityDTO dto, @PathVariable Long id){
 		Activity activity = convertToActivity.convert(dto);
+		if(activityServis.findOne(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 		if(id != activity.getId()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Activity persisted = activityServis.save(activity);
-		ActivityDTO persistedDTO = toDTo.convert(persisted);
-		return new ResponseEntity<>(persistedDTO, HttpStatus.OK);
+		return new ResponseEntity<>(toDTo.convert(persisted), HttpStatus.OK);
 	}
 }

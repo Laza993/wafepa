@@ -11,5 +11,7 @@ public interface AddressService {
 	Address delete(Long id);
 	List<Address> deleteAll(List<Long> iDes);
 	Address update(Long id, Address address);
+	List<Address> findAllByStreet(String street);
+	List<Address> findAllByNumber(String number);
 	
 }

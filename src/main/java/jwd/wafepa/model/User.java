@@ -1,11 +1,24 @@
 package jwd.wafepa.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tbl_User")
 public class User {
+	@Id
+	@GeneratedValue
 	private Long id;
+	@Column(name = "email", nullable = false)
 	private String email;
+	@Column(name = "name", length = 30, nullable = false)
 	private String firstName;
+	@Column(name = "last_name", length = 30, nullable = false)
 	private String lastName;
+	@Column(name = "password", nullable = false)
 	private String password;
 	
 	

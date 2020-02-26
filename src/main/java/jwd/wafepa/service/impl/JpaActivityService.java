@@ -1,7 +1,9 @@
 package jwd.wafepa.service.impl;
 
 import java.util.ArrayList;
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jwd.wafepa.model.Activity;
 import jwd.wafepa.repository.ActivityRepository;
 import jwd.wafepa.service.ActivityService;
+
 @Transactional
 @Service
 public class JpaActivityService implements ActivityService {
@@ -68,7 +71,7 @@ public class JpaActivityService implements ActivityService {
 		return deleted;
 	}
 	
-	//@PostConstruct
+//	@PostConstruct
 	public void БилоШта(){
 		save(new Activity("Swimming"));
 		save(new Activity("Running"));

@@ -2,7 +2,6 @@ package jwd.wafepa.web.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jwd.wafepa.model.User;
@@ -34,11 +32,11 @@ public class ApiUserController {
 	UserRegistrationDTOtoUser registrationToUser;
 	
 	
-	@RequestMapping(method = RequestMethod.GET, params = {"name"})
-	public ResponseEntity<List<UserDTO>> getUsers(@RequestParam String name){
-		List<User> users = userService.findUsersByName(name);
-		return new ResponseEntity<>(toUserDTO.convert(users), HttpStatus.OK);
-	}
+//	@RequestMapping(method = RequestMethod.GET, params = {"name"})
+//	public ResponseEntity<List<UserDTO>> getUsers(@RequestParam String name){
+//		List<User> users = userService.findUsersByName(name);
+//		return new ResponseEntity<>(toUserDTO.convert(users), HttpStatus.OK);
+//	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> getUsers(){
@@ -81,10 +79,5 @@ public class ApiUserController {
 		return new ResponseEntity<>(toUserDTO.convert(updated), HttpStatus.OK);
 	}
 	
-	
-	@PostConstruct
-	public void init() {
-		userService.save(new User(null, "laza@gmail.com", "Laza", "Lazarevic", "laza123"));
-		userService.save( new User(null, "kika@gmail.com", "Kika", "Lazarevic", "kika123"));
 }
-}
+

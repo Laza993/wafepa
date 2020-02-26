@@ -4,8 +4,7 @@ import java.util.List;
 
 import jwd.wafepa.model.Activity;
 
-public interface ActivityService {
-	
+public interface ActivityService {	
 	
 	List<Activity> findAll();
 	

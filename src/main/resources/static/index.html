@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wafepa</title>
     <script src="\assets\js\angular.js"></script>
+    <script src="\assets\js\angular-route.js"></script>
     <script src="\app\js\main.js"></script>
 </head>
-<body ng-app="firstApp">
-    <div ng-controller="firstController">
-        <p>proba mala</p>
-        <input type="text" ng-model="tekst">
-        <p>{{tekst}}</p>
+<body>
+    <div ng-app="wafepaApp">
+        <div ng-view="" ng-scope="">
+
+        </div>
     </div>
     
 </body>

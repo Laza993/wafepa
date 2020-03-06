@@ -1,9 +1,12 @@
 package jwd.wafepa.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,9 @@ public class Address {
 	private String street;
 	@Column(name = "number", length = 10)
 	private String number;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private User user;
 	
 	public Address(Long id, String street, String number) {
 		super();
@@ -49,6 +55,15 @@ public class Address {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+	public User getUser() {
+		return this.user;
+	}
 	
+	public void setUser(User user) {
+		this.user = user;
+		if(!user.getAdresses().contains(this)) {
+			user.getAdresses().add(this);
+		}
+	}
 	
 }

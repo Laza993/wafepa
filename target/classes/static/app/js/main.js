@@ -1,5 +1,16 @@
 var wafepaApp = angular.module("wafepaApp", ["ngRoute"]);
 
+wafepaApp.controller("HomeCtrl", function($scope, $location){
+	
+	$scope.toActivities = function(){
+		$location.path("activities");
+	}
+
+	$scope.toUsers = function(){
+		$location.path("users");
+	}
+});
+
 
 wafepaApp.controller("ActivityCtrl", function($scope, $http, $location){
 	var url = "api/activities";
@@ -99,6 +110,26 @@ wafepaApp.controller("AddActivityCtrl", function($scope, $http, $location){
 });
 
 
+wafepaApp.controller("UsersCtrl", function($scope, $http){
+	var url = "api/users";
+
+	$scope.users = [];
+
+	var ListAllUsers = function(){
+		$http.get(url).then(
+			function success(res){
+				console.log(res);
+				$scope.users = res.data;
+			},
+			function error(){
+				alert("failed to fetch users")
+			}
+		)
+	}
+	ListAllUsers();
+});
+
+
 wafepaApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 		.when('/', {
@@ -112,6 +143,9 @@ wafepaApp.config(['$routeProvider', function($routeProvider) {
 		})
 		.when('/activities/edit/:id', {
 			templateUrl : '/app/html/edit-activity.html'
+		})
+		.when('/users', {
+			templateUrl : '/app/html/Users.html'
 		})
 		.otherwise({
 			redirectTo: '/'

@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jwd.wafepa.model.User;
+import jwd.wafepa.service.RecordService;
 import jwd.wafepa.service.UserService;
+import jwd.wafepa.support.RecordToRecordDTO;
 import jwd.wafepa.support.UserRegistrationDTOtoUser;
 import jwd.wafepa.support.UserToUserDTO;
+import jwd.wafepa.web.DTO.RecordDTO;
 import jwd.wafepa.web.DTO.UserDTO;
 import jwd.wafepa.web.DTO.UserRegistrationDTO;
 
@@ -26,11 +29,16 @@ import jwd.wafepa.web.DTO.UserRegistrationDTO;
 public class ApiUserController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	@Autowired
-	UserToUserDTO toUserDTO;
+	private UserToUserDTO toUserDTO;
 	@Autowired
-	UserRegistrationDTOtoUser registrationToUser;
+	private UserRegistrationDTOtoUser registrationToUser;
+	@Autowired
+	private RecordService recordService;
+	@Autowired
+	private RecordToRecordDTO convertRecordToDto;
+
 	
 	
 	@RequestMapping(method = RequestMethod.GET, params = {"name"})
@@ -91,6 +99,12 @@ public class ApiUserController {
 		}
 		User updated = userService.save(registrationToUser.convert(userReg));
 		return new ResponseEntity<>(toUserDTO.convert(updated), HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/records")
+	public ResponseEntity<List<RecordDTO>> getRecordsFromUser(@PathVariable Long id){
+		List<RecordDTO> dtos = convertRecordToDto.convert(recordService.findAllByUser(id));
+		return new ResponseEntity<>(dtos, HttpStatus.OK);
 	}
 	
 }

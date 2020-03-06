@@ -2,6 +2,7 @@ package jwd.wafepa.service.impl;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,7 @@ public class JpaUserService implements UserService {
 		return userRepository.findAllByFirstName(name);
 	}
 	
-	//@PostConstruct
+//	@PostConstruct
 	public void biloSta(){
 		save(new User(null, "laza@gmail.com", "Laza", "Lazarevic", "laza123"));
 		save( new User(null, "kika@gmail.com", "Kika", "Lazarevic", "kika123"));

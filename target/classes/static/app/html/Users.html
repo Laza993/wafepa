@@ -1,8 +1,44 @@
 <div ng-controller="UsersCtrl">
-    <h1>users</h1>
+    <h1>Users</h1>
+    
+    <button class="btn btn-primary" ng-click="goToRegister()">Register</button>
+    
 
-    <table>
-        <tr><th>Users:</th></tr>
-        <tr ng-repeat="usr in users"><td> {{usr.firstName}} </td></tr>
+    <table class="table table-dark table-bordered table-striped ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    <button class="btn btn-primary" ng-click="sortBy('username')">Username:</button>
+                    <span class="sortorder" ng-show="propertyName === 'username'" ng-class="{reverse: reverse}"></span>
+                </th>
+                <th>
+                    <button class="btn btn-primary" ng-click="sortBy('firstName')">First Name:</button>
+                    <span class="sortorder" ng-show="propertyName === 'firstName'" ng-class="{reverse: reverse}"></span>
+                </th>
+                <th>
+                    <button class="btn btn-primary" ng-click="sortBy('lastName')">Last Name: </button>
+                    <span class="sortorder" ng-show="propertyName === 'lastName'" ng-class="{reverse: reverse}"></span>
+                </th>
+                <th>
+                    <button class="btn btn-primary" ng-click="sortBy('email')">email:</button>
+                    <span class="sortorder" ng-show="propertyName === 'email'" ng-class="{reverse: reverse}"></span>
+                </th>
+                <th>actions</th>
+            </tr>
+
+        </thead>
+        <tbody ng-repeat="usr in users | orderBy: propertyName : reverse">
+            <tr>
+                <td></td>
+                <td>{{usr.username}}</td>
+                <td> {{usr.firstName}} </td>
+                <td> {{usr.lastName}} </td>
+                <td> {{usr.email}} </td>
+                <td>
+                    <button class="btn btn-primary" ng-click="deleteUser(usr.id)" > delete</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>

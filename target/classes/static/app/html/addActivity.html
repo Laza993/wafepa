@@ -1,9 +1,9 @@
 <div ng-controller="AddActivityCtrl">
-    <h1>add</h1>
+    <h1>createActivity</h1>
     <form>
         <label for="name">Name</label>
-        <input ng-model="Activity.name">
-        <button ng-click="createActivity()">Create</button>
+        <input ng-model="Activity.name" required>
+        <button ng-disabled="Activity.name == '' " ng-click="createActivity()">Create</button>
     </form>
 
 </div>

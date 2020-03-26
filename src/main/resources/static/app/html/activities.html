@@ -1,11 +1,28 @@
 <div ng-controller="ActivityCtrl">
-    <h1>activities</h1>
+    <h1>Activities</h1>
     
-    <table>
-        <tr><th>Name</th></tr>
-        <tr ng-repeat="a in activities"><td>{{a.name}}</td><td><button ng-click="toEditActivity(a.id)">edit</button></td><td><button ng-click="doDeleteActivity(a.id)">delete</button></td></tr>
+    <table class="table table-dark table-bordered table-striped ">
+        <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Action</th>
+        </thead>
+        <tbody ng-repeat="a in activities | orderBy: 'name':reverse">
+            <tr>
+                <td></td>
+                <td>{{a.name}}</td>
+                <td>
+                    
+                    <button ng-click="toEditActivity(a.id)">edit</button>
+                    <button ng-click="doDeleteActivity(a.id)">delete</button>
+                    <button ng-click="viewActivity(a.id)">view</button>
+                </td>
+            </tr>
+            <button ng-click="reverseChange()">reverse</button>
+            
+        </tbody>
     </table>
 
-    <button ng-click="toAddActivity()">Add Activity</button>
+    <button ng-click="toAddActivity()"  class="btn btn-primary">Create Activity</button>
 
 </div>

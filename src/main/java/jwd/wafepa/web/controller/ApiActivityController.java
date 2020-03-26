@@ -47,7 +47,7 @@ public class ApiActivityController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ResponseEntity<ActivityDTO> getActivity(@PathVariable Long id){
 		Activity activity = activityServis.findOne(id);
-		if(id == null) {
+		if(activity == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(toDTo.convert(activity), HttpStatus.OK);

@@ -1,15 +1,40 @@
 package jwd.wafepa.web.DTO;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class UserRegistrationDTO {
 	private Long id;
+	@NotBlank
+	@Email
 	private String email;
+	@NotBlank
+	private String username;
+	@NotBlank
 	private String firstName;
+	@NotBlank
 	private String lastName;
+	@NotBlank
 	private String password1;
+	@NotBlank
 	private String password2;
 	
 	public UserRegistrationDTO() {
 		super();
+	}
+	
+	
+
+
+	public UserRegistrationDTO(String email, String username, String firstName, String lastName, String password1,
+			String password2) {
+		super();
+		this.email = email;
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password1 = password1;
+		this.password2 = password2;
 	}
 
 	public UserRegistrationDTO(Long id, String email, String firstName, String lastName, String password1,
@@ -77,5 +102,14 @@ public class UserRegistrationDTO {
 				+ lastName + ", password1=" + password1 + ", password2=" + password2 + "]";
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	
 }

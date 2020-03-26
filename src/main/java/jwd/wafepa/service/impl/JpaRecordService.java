@@ -53,7 +53,6 @@ public class JpaRecordService implements RecordService {
 	
 //	@PostConstruct
 	public void init() {
-
 		Date dat1 = new Date();
 		save(new Record(null, dat1, 100, Intensity.extreme, userService.getOne(2L), activityService.findOne(2L)));
 		

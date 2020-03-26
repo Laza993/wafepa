@@ -37,10 +37,10 @@ public class Activity {
 	}
 	
 	public void addRecord(Record record){
-		if(record.getActivity() != this){
+		this.records.add(record);
+		if(record.getActivity() != null && !record.getActivity().equals(this)){
 			record.setActivity(this);
 		}
-		records.add(record);
 	}
 
 	public Activity() {

@@ -2,10 +2,20 @@ package jwd.wafepa.web.DTO;
 
 public class UserDTO {
 	private Long id;
+	private String username;
 	private String email;
 	private String firstName;
 	private String lastName;
 	
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public UserDTO() {
 		super();
 	}

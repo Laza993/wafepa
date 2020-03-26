@@ -20,51 +20,44 @@ public class User {
 	private Long id;
 	@Column(name = "email", nullable = false)
 	private String email;
+	@Column(unique = true, nullable = false, length = 30)
+	private String username;
 	@Column(name = "name", length = 30, nullable = false)
 	private String firstName;
 	@Column(name = "last_name", length = 30, nullable = false)
 	private String lastName;
 	@Column(name = "password", nullable = false)
 	private String password;
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Address> adresses = new ArrayList<Address>();
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Record> records = new ArrayList<Record>();
 	
-	public List<Record> getRecords() {
-		return records;
-	}
-
-	public void setRecords(List<Record> records) {
-		this.records = records;
-	}
 	
-	public void addRecord(Record record) {
-		if(record.getUser() != this) {
-			record.setUser(this);
-		}
-		records.add(record);
-		
-	}
-	
-	public List<Address> getAdresses() {
-		return adresses;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setAdresses(List<Address> adresses) {
-		this.adresses = adresses;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public User() {
 		super();
+	}
+
+	public User(String email, String username, String firstName, String lastName, String password,
+			List<Address> adresses, List<Record> records) {
+		super();
+		this.email = email;
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.adresses = adresses;
+		this.records = records;
 	}
 
 	public User(Long id, String email, String firstName, String lastName) {
@@ -90,6 +83,46 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	public List<Record> getRecords() {
+		return records;
+	}
+
+	public void setRecords(List<Record> records) {
+		this.records = records;
+	}
+	
+	public void addRecord(Record record) {
+		this.records.add(record);
+		if(record.getUser() != null && !record.getUser().equals(this)) {
+			record.setUser(this);
+		}	
+	}
+	
+	public List<Address> getAdresses() {
+		return adresses;
+	}
+
+	public void setAdresses(List<Address> adresses) {
+		this.adresses = adresses;
+	}
+
+	public void addAddress(Address address) {
+		this.adresses.add(address);
+		
+		if (address.getUser() != null && !address.getUser().equals(this)) {
+			address.setUser(this);
+		}
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -129,11 +162,6 @@ public class User {
 				+ ", password=" + password + "]";
 	}
 
-	public void addAddress(Address address) {
-		this.adresses.add(address);
-		if (!this.equals(address.getUser())) {
-			address.setUser(this);
-		}
-	}
+
 
 }

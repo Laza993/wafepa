@@ -1,6 +1,7 @@
 body
 {
-    counter-reset: Serial;           /* Set the Serial counter to 0 */
+  counter-reset: Serial;           /* Set the Serial counter to 0 */
+
 }
 
 table
@@ -12,21 +13,6 @@ tr td:first-child:before
 {
   counter-increment: Serial;      /* Increment the Serial counter */
   content:  counter(Serial) "."; /* Display the counter */
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
 }
 
 .form-signin {

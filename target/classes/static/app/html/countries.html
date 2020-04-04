@@ -2,10 +2,74 @@
     <h1>Countries</h1>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-3">
+            <form>
+                <div class="form-group">
+                    <label>Continent</label>
+                    <select ng-focus="countries.regBlock = '' " class="form-control" ng-model="countries.region">
+                        <option value="Europe" selected>Europe</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Americas">Americas</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                </div>
+
+                <div  class="form-group">
+                    <label>Regional Bloc</label>
+                    <select ng-focus="countries.region = '' " class="form-control" ng-model="countries.regBlock">
+                        <option value="eu" selected>European Union</option>
+                        <option value="caricom">Caribbean Community</option>
+                        <option value="efta">European Free Trade Association</option>
+                        <option value="pa">Pacific Alliance</option>
+                        <option value="au">African Union</option>
+                        <option value="usan">Union of South American Nations</option>
+                        <option value="eeu">Eurasian Economic Union</option>
+                        <option value="al">Arab League</option>
+                        <option value="asean">Association of Southeast Asian Nations</option>
+                        <option value="cais">Central American Integration System</option>
+                        <option value="cefta">Central European Free Trade Agreement</option>
+                        <option value="nafta">North American Free Trade Agreement</option>
+                        <option value="saarc">South Asian Association for Regional Cooperation</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button ng-click="search()" class="btn btn-primary">search</button>
+                </div>
+                <div class="form-group">
+                    <button ng-click="findAll()" class="btn btn-primary">all Countries</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-9">
+
+            <div style="margin-bottom:10px" class="btn-group float-right">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <button ng-disabled="pageNum == 0" ng-click="changePage(-1)"
+                                class="btn btn-primary">Previous</button>
+                        </li>
+                        <li ng-hide="pageNum == 0" class="page-item"><button ng-click="goToPage(pageNum - 1)"
+                                class="page-link">{{pageNum - 1}}</button></li>
+                        <li class="page-item active">
+                            <button class="page-link">{{pageNum}}</button>
+                        </li>
+                        <li class="page-item" ng-hide="pageNum == totalPages - 1"> <button
+                                ng-click="goToPage(pageNum + 1)" class="page-link">{{pageNum + 1}}</button></li>
+                        <li class="page-item">
+                            <button ng-disabled="pageNum == totalPages - 1" ng-click="changePage(1)"
+                                class="btn btn-primary">Next</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
             <table class="table  table-bordered table-striped">
                 <thead class="thead-dark">
-                    <th></th>
+                    <th>#</th>
                     <th>Country</th>
                     <th>Capital</th>
                     <th>Population</th>
@@ -26,7 +90,7 @@
 
 
 
-<!-- 
+    <!-- 
     <div class="container">
         <div class="row">
             <div class="col">
@@ -64,12 +128,12 @@
                     <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
                         <a ng-click="vm.setPage(vm.pager.totalPages)">Last</a>
                     </li>
-                </ul> -->
+                </ul> 
                     </table>
                 </div>
             </div>
             
         </div>
-    </div> -->
+    </div>-->
 
 </div>

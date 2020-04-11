@@ -28,10 +28,8 @@ public class Record {
 	@Column(name="intensity")
 	@Enumerated(EnumType.STRING)
 	private Intensity intensity;
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Activity activity;
 	

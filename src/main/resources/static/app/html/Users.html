@@ -1,8 +1,7 @@
 <div ng-controller="UsersCtrl">
-    
     <h1>Users</h1>
-    
-    <button class="btn btn-primary" ng-click="goToRegister()">Register</button> 
+
+    <button class="btn btn-primary" ng-click="goToRegister()">Register</button>
 
     <div class="row">
         <div class="col">
@@ -12,23 +11,27 @@
                         <th>#</th>
                         <th>
                             <button class="btn btn-primary" ng-click="sortBy('username')">Username:</button>
-                            <span class="sortorder" ng-show="propertyName === 'username'" ng-class="{reverse: reverse}"></span>
+                            <span class="sortorder" ng-show="propertyName === 'username'"
+                                ng-class="{reverse: reverse}"></span>
                         </th>
                         <th>
                             <button class="btn btn-primary" ng-click="sortBy('firstName')">First Name:</button>
-                            <span class="sortorder" ng-show="propertyName === 'firstName'" ng-class="{reverse: reverse}"></span>
+                            <span class="sortorder" ng-show="propertyName === 'firstName'"
+                                ng-class="{reverse: reverse}"></span>
                         </th>
                         <th>
                             <button class="btn btn-primary" ng-click="sortBy('lastName')">Last Name: </button>
-                            <span class="sortorder" ng-show="propertyName === 'lastName'" ng-class="{reverse: reverse}"></span>
+                            <span class="sortorder" ng-show="propertyName === 'lastName'"
+                                ng-class="{reverse: reverse}"></span>
                         </th>
                         <th>
                             <button class="btn btn-primary" ng-click="sortBy('email')">email:</button>
-                            <span class="sortorder" ng-show="propertyName === 'email'" ng-class="{reverse: reverse}"></span>
+                            <span class="sortorder" ng-show="propertyName === 'email'"
+                                ng-class="{reverse: reverse}"></span>
                         </th>
                         <th>actions</th>
                     </tr>
-        
+
                 </thead>
                 <tbody ng-repeat="usr in users | orderBy: propertyName : reverse">
                     <tr>
@@ -38,12 +41,11 @@
                         <td>{{usr.lastName}}</td>
                         <td>{{usr.email}}</td>
                         <td>
-                            <button class="btn btn-primary" ng-click="deleteUser(usr.id)" > delete</button>
+                            <button class="btn btn-primary" ng-click="deleteUser(usr.id)"> delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    
 </div>

@@ -1,5 +1,4 @@
 angular.module("wafepaAppEditActivityCtrl", []).controller("EditActivityCtrl",['$scope', '$http', '$location','$routeParams', function($scope, $http, $location, $routeParams){
-	console.log($routeParams.id);
 
 	var url = "api/activities/" + $routeParams.id;
 
@@ -9,7 +8,6 @@ angular.module("wafepaAppEditActivityCtrl", []).controller("EditActivityCtrl",['
 	var FindActivity = function(){
 		$http.get(url).then(
 			function success(res){
-				console.log(res);
 				$scope.Activity = res.data;
 			},
 			function error(){

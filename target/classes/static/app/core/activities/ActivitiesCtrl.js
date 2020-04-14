@@ -59,7 +59,6 @@ angular.module("wafepaAppActivitiesCtrl", []).controller("ActivityCtrl", ['$scop
 	}
 
 	$scope.toEditActivity = function(id){
-		console.log(id)
 		$location.path("/activities/edit/" + id)
 	}
 

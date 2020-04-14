@@ -15,11 +15,11 @@ angular.module("wafepaAppCountriesCtrl", []).controller("countriesCtrl", ['$scop
 		var url = urlAll;
 		if($scope.countries.region != ""){
 			url = "https://restcountries.eu/rest/v2/region/" + $scope.countries.region;
-			console.log(url);
+			
 		}
 		if($scope.countries.regBlock != ""){
 			url = "https://restcountries.eu/rest/v2/regionalbloc/" + $scope.countries.regBlock;
-			console.log(url);
+			
 		}
 		$http.get(url).then(
 			function success(res){
@@ -31,7 +31,6 @@ angular.module("wafepaAppCountriesCtrl", []).controller("countriesCtrl", ['$scop
 				if( remainder == 0){
 					$scope.totalPages = Countries.length / 10;
 				}
-				console.log($scope.totalPages);
 				
 				$scope.pageInitIndex = $scope.pageNum * $scope.pageSize;
 				$scope.pageEndIndex = $scope.pageNum * $scope.pageSize + $scope.pageSize;
@@ -63,10 +62,8 @@ angular.module("wafepaAppCountriesCtrl", []).controller("countriesCtrl", ['$scop
 	}
 
 	$scope.changePage = function(direction){
-		console.log(direction);
 		
 		$scope.pageNum += direction;
-		console.log($scope.pageNum);
 		
 		getCountries();
 	}

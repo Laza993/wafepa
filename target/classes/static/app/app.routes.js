@@ -4,33 +4,31 @@ angular.module("wafepaAppRoutes", []).config(['$routeProvider', function($routeP
             templateUrl : '/app/html/home.html'
 		})
 		.when('/activities', {
-			templateUrl : '/app/html/activities.html'
+			templateUrl : '/app/core/activities/activities.html'
 		})
 		.when('/activities/view/:id', {
-			templateUrl : '/app/html/viewActivity.html'
+			templateUrl : '/app/core/activities/viewActivity.html'
 		})
 		.when('/activities/add', {
-			templateUrl : '/app/html/addActivity.html'
+			templateUrl : '/app/core/activities/addActivity.html'
 		})
 		.when('/activities/edit/:id', {
-			templateUrl : '/app/html/edit-activity.html'
+			templateUrl : '/app/core/activities/edit-activity.html'
 		})
 		.when('/users', {
-            templateUrl : '/app/html/Users.html',
+            templateUrl : '/app/core/users/Users.html',
 		})
 		.when('/users/register', {
-			templateUrl : '/app/html/Register.html'
+			templateUrl : '/app/core/users/Register.html'
 		})
 		.when('/login', {
-			templateUrl : '/app/html/Login.html'
-		})
-		.when('/activities/view/:id', {
-			templateUrl : '/app/html/viewActivity.html'
+			templateUrl : '/app/core/users/Login.html'
 		})
 		.when('/countries', {
-			templateUrl : '/app/html/countries.html'
+			templateUrl : '/app/core/countries/countries.html'
 		})
 		.otherwise({
 			redirectTo: '/'
 		});
 }]);
+

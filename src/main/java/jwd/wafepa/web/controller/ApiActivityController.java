@@ -5,6 +5,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +35,21 @@ public class ApiActivityController {
 	ActivityService	activityServis;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ActivityDTO>> getAllActivities(){
-		List<Activity> activities = activityServis.findAll();
-		return new ResponseEntity<>(toDTo.convert(activities), HttpStatus.OK);
+	public ResponseEntity<List<ActivityDTO>> getAllActivities(
+							@RequestParam(required = false, defaultValue = "0") int pageNum,
+							@RequestParam(required = false, defaultValue = "5") int pageSize,
+							@RequestParam(required = false) String activityName){
+		Page<Activity> activityPage = null;
+		
+		if(activityName != null) {
+			activityPage = activityServis.search(activityName, pageNum, pageSize);
+		}else {
+			activityPage = activityServis.findAll(pageNum, pageSize);
+		}
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("totalPages", Integer.toString(activityPage.getTotalPages()));
+		return new ResponseEntity<>(toDTo.convert(activityPage.getContent()), headers, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, params = {"name"})

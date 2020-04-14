@@ -2,6 +2,8 @@ package jwd.wafepa.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import jwd.wafepa.model.Activity;
 
 public interface ActivityService {	
@@ -23,4 +25,8 @@ public interface ActivityService {
 	List<Activity> saveList(List<Activity> activiti);
 	
 	List<Activity> removeList(List<Long> IDes);
+
+	Page<Activity> findAll(int pageNum, int pageSize);
+
+	Page<Activity> search(String activityName, int pageNum, int pageSize);
 }

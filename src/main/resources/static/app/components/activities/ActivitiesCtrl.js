@@ -5,6 +5,16 @@ angular.module("wafepaAppActivitiesCtrl", []).controller("ActivityCtrl", ['$scop
 	$scope.activities = [];
 	$scope.reverse = false;
 
+
+	$scope.pageNum = 0;
+	$scope.totalPages = 1;
+
+	$scope.pageSize = 5;
+
+	$scope.activityName = "";
+
+	
+
 	$scope.doReverse = function(){
 		if($scope.reverse == false){
 			$scope.reverse = true;
@@ -14,10 +24,19 @@ angular.module("wafepaAppActivitiesCtrl", []).controller("ActivityCtrl", ['$scop
 	}
 
 	var getActivities = function(){
-		$http.get(url).then(
+		var config = {params : {}};
+
+		config.params.pageNum = $scope.pageNum;
+		config.params.pageSize = $scope.pageSize;
+		if($scope.activityName != ""){
+			config.params.activityName = $scope.activityName;
+		}
+
+		$http.get(url, config).then(
 			function success(res){
-				//console.log(res)
 				$scope.activities = res.data;
+				$scope.totalPages = res.headers('totalPages');
+				
 			},
 			function error(){
 				alert("failed to fetch all activities")
@@ -50,6 +69,24 @@ angular.module("wafepaAppActivitiesCtrl", []).controller("ActivityCtrl", ['$scop
 
 	$scope.viewActivity = function(id){
 		$location.path('/activities/view/' + id);
+	}
+
+	$scope.goToPage = function(pageNum){
+		$scope.pageNum = pageNum;
+		getActivities();
+	}
+
+	$scope.changePage = function(direction){
+		$scope.pageNum += direction;
+		getActivities();
+	}
+
+	$scope.reload = function(){
+		getActivities();
+	}
+
+	$scope.searchActivity = function(){
+		getActivities();
 	}
 
 }]);

@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,28 +43,27 @@ public class ApiUserController {
 
 	
 	
-	@RequestMapping(method = RequestMethod.GET, params = {"name"})
-	public ResponseEntity<List<UserDTO>> findUsersByName(@RequestParam String name){
-		List<User> users = userService.findUsersByName(name);
-		return new ResponseEntity<>(toUserDTO.convert(users), HttpStatus.OK);
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, params = {"lastName"})
-	public ResponseEntity<List<UserDTO>> findUsersByLastName(@RequestParam String lastName){
-		List<User> users = userService.findUsersByLastName(lastName);
-		return new ResponseEntity<>(toUserDTO.convert(users), HttpStatus.OK);
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, params = {"email"})
-	public ResponseEntity<List<UserDTO>> findUsersByEmail(@RequestParam String email){
-		List<User> users = userService.findUsersByEmail(email);
-		return new ResponseEntity<>(toUserDTO.convert(users), HttpStatus.OK);
-	}
-	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<UserDTO>> getUsers(){
-		List<User> users = userService.getUsers();
-		return new ResponseEntity<>(toUserDTO.convert(users), HttpStatus.OK);
+	public ResponseEntity<List<UserDTO>> findUsers(
+			@RequestParam(value = "pageNum", defaultValue = "0") int pageNum,
+			@RequestParam(required = false) String firstName,
+			@RequestParam(required = false) String lastName,
+			@RequestParam(required = false) String userName,
+			@RequestParam(required = false) String email
+			){
+		
+		Page<User> userPage = null;
+			
+		if(firstName != null || lastName != null || userName != null || email != null) {
+			userPage = userService.search(firstName, email, lastName, userName, pageNum);
+		}else {
+			userPage = userService.findAll(pageNum);
+		}
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("totalPages", Integer.toString(userPage.getTotalPages()));
+		
+		return new ResponseEntity<>(toUserDTO.convert(userPage.getContent()), headers, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")

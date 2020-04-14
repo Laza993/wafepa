@@ -2,6 +2,8 @@ package jwd.wafepa.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import jwd.wafepa.model.User;
 
 public interface UserService {
@@ -15,12 +17,9 @@ public interface UserService {
 	
 	User delete(Long id);
 	
-	User findByName(String name);
-	
-	List<User> findUsersByName(String name);
 
-	List<User> findUsersByLastName(String lastName);
+	Page<User> search(String firstName, String email, String lastName, String userName, int pageNum);
 
-	List<User> findUsersByEmail(String email);
+	Page<User> findAll(int pageNum);
 	
 }

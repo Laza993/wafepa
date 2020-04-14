@@ -6,6 +6,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,6 +78,19 @@ public class JpaActivityService implements ActivityService {
 		save(new Activity("Swimming"));
 		save(new Activity("Running"));
 		
+	}
+
+	@Override
+	public Page<Activity> findAll(int pageNum, int pageSize) {
+		return activityRepository.findAll(new PageRequest(pageNum, pageSize));
+	}
+
+	@Override
+	public Page<Activity> search(String activityName, int pageNum, int pageSize) {
+		if(activityName != null) {
+			activityName = "%" + activityName + "%";
+		}
+		return activityRepository.search(activityName, new PageRequest(pageNum, pageSize));
 	}
 
 }

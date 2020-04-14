@@ -1,9 +1,47 @@
 <div ng-controller="UsersCtrl">
-    <h1>Users</h1>
-
-    <button class="btn btn-primary" ng-click="goToRegister()">Register</button>
+    <h1>Users</h1>    
 
     <div class="row">
+        <div class="col-md-4">
+            <form class="form-group">
+                <label>Search by:</label>
+                <select class="form-control" ng-model="option">
+                    <option value="firstName">firstName</option>
+                    <option value="lastName">lastName</option>
+                    <option value="userName">userName</option>
+                    <option value="email">email</option>
+                </select>
+                <input type="text" ng-model="name"> 
+                <input ng-disabled=" name == ''" class="btn btn-primary" type="submit" ng-click="searchByName()" value="search">
+            </form>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" ng-click="goToRegister()">Register</button>
+
+        </div>
+        <div style="margin-bottom:10px" class=" col-md-4 btn-group float-right">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <button ng-disabled="pageNum == 0" ng-click="changePage(-1)" class="btn btn-primary">Previous</button>
+                    </li>
+                    <li ng-hide="pageNum == 0" class="page-item">
+                        <button ng-click="goToPage(pageNum - 1)"  class="page-link">{{pageNum - 1}}</button></li>
+                    <li class="page-item active"> <button class="page-link">{{pageNum}}</button>
+                    </li>
+                    <li class="page-item" ng-hide="pageNum == totalPages - 1"> <button
+                            ng-click="goToPage(pageNum + 1)" class="page-link">{{pageNum + 1}}</button></li>
+                    <li class="page-item">
+                        <button ng-disabled="pageNum == totalPages - 1" ng-click="changePage(1)"
+                            class="btn btn-primary">Next</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+
         <div class="col">
             <table class="table table-dark table-bordered table-striped ">
                 <thead>

@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,15 +46,7 @@ public class JpaUserService implements UserService {
 		}
 		return user;
 	}
-	@Override
-	public User findByName(String name) {
-		return userRepository.findByFirstName(name);
-	}
-	
-	@Override
-	public List<User> findUsersByName(String name) {
-		return userRepository.findAllByFirstName(name);
-	}
+
 	
 //	@PostConstruct
 	public void biloSta(){
@@ -60,13 +54,27 @@ public class JpaUserService implements UserService {
 		save( new User(null, "kika@gmail.com", "Kika", "Lazarevic", "kika123"));
 	}
 
+
 	@Override
-	public List<User> findUsersByLastName(String lastName) {
-		return userRepository.findAllByLastName(lastName);
+	public Page<User> search(String firstName, String email, String lastName, String userName, int pageNum) {
+		if(firstName != null) {
+			firstName = '%' + firstName + '%';
+		}
+		if(email != null) {
+			email = '%' + email + '%';
+		}
+		if(lastName != null) {
+			lastName = '%' + lastName + '%';
+		}
+		if(userName != null) {
+			userName = '%' + userName + '%';
+		}
+		return userRepository.search(firstName, email, lastName, userName, new PageRequest(pageNum, 5));
 	}
 
 	@Override
-	public List<User> findUsersByEmail(String email) {
-		return userRepository.findAllByEmail(email);
+	public Page<User> findAll(int pageNum) {
+		 Page<User> page = userRepository.findAll(new PageRequest(pageNum, 5));
+		return page;
 	}
 }

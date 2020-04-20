@@ -17,7 +17,8 @@ it covers folowing topics:
         2.1. SPA (Single Page Application) concept
         2.2. AngularJS app
         2.3. Bootstrap
-        2.4. Use of different APIs
+        2.4. Use of REST Countries API http://restcountries.eu/
+        2.5. Use of themoviedb.org API https://www.themoviedb.org/documentation/api
 
 
 

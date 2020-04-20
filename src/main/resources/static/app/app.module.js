@@ -3,6 +3,7 @@ var wafepaApp = angular.module("wafepaApp", ["ngRoute",
 											"users",
 											"activities",
 											"countries",
+											"WafepaMovies"
 											]);
 
 

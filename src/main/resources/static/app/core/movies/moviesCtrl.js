@@ -1,6 +1,5 @@
 angular.module("moviesController", []).controller("moviesCtrl", ['$http', '$scope', '$location', function($http, $scope, $location){
-    console.log("welcome to movies page")
-
+    
     var url = "https://api.themoviedb.org/3";
     var api_key = "?api_key=0cfc8693d7525c6ae845849148249b19";
 
@@ -13,6 +12,8 @@ angular.module("moviesController", []).controller("moviesCtrl", ['$http', '$scop
     var queryYear = "&year=";
     var searchMovie = "/search/movie"
 
+    
+    $scope.imgPath = "";
 
 
 
@@ -34,6 +35,9 @@ angular.module("moviesController", []).controller("moviesCtrl", ['$http', '$scop
         }
 
         urlSearch = url + searchMovie + api_key + "&language=en-US" + queryName + "&page=" + $scope.page + "&include_adult=false" + queryYear;
+        
+        $scope.imgPath = urlSearch;
+        
         getMovies(urlSearch);
         queryName = "&query=";
         queryYear = "&year=";        

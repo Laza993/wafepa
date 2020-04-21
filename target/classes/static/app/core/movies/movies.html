@@ -1,56 +1,44 @@
 <div ng-controller="moviesCtrl">
     <h1>What to watch</h1>
 
-    <div class="row">
+    <div class="row justify-content-center">
         <form class="form-group">
             <label>
                 Film name:
             </label>
-            <input type="text" ng-model="movieName" required/>
+            <input type="text" ng-model="movieName" required />
             <label>Year of production:</label>
             <input type="number" ng-model="movieRelaceYear">
 
-            <input type="submit" ng-disabled="movieRelaceYear === '' &&  movieName === '' "  ng-click="searchForMovie()" value="search" class="btn btn-primary">
+            <input type="submit" ng-disabled="movieRelaceYear === '' &&  movieName === '' " ng-click="searchForMovie()"
+                value="search" class="btn btn-primary">
         </form>
     </div>
 
 
-    <div class="row">
-        <h2>Found movies</h2>
+    <div class="pageWraper">
+        <div ng-repeat="movie in movies.results" class="card style1">
+            <div class="image">
+                <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
+                     alt="{{movie.original_title}}">
+            </div>
 
-    <table class="table table-striped table-sm">
-        <thead>
-            <th>#</th>
-            <th>original_title</th>
-            <th>vote_average</th>
-            <th>release_date</th>
-        </thead>
-        <tbody>
-            <tr ng-repeat="movie in movies.results">
-                <td></td>
-                <td>{{movie.original_title}}</td>
-                <td>{{movie.vote_average}}</td>
-                <td>{{movie.release_date}}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="content">
+                <h2><a href="">{{movie.original_title}}</a></h2>
+                <p> {{movie.vote_average}} {{movie.release_date}}</p>
+            </div>
+        </div>
     </div>
 
-    <div class="row logo-full">
-        <div class="col-md-4">
 
-        </div>
-        <div class="col-md-4 text-center">
-            <img  src="/app/img/tmdb/tmdb2.svg" style="width:500px;height:150px;text-align: center;">
-        </div>
-        <div class="col-md-4">
-            
-        </div>
-        
+
+    <div class="row logo-full justify-content-center">   
+
+            <img src="/app/img/tmdb/tmdb2.svg" style="width:500px;height:150px;text-align: center;">
+
     </div>
-    
+
 
 
 
 </div>
-

@@ -1,7 +1,5 @@
 package jwd.wafepa.support;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -23,15 +21,4 @@ public class UserRegistrationDTOtoUser implements Converter<UserRegistrationDTO,
 		user.setPassword(source.getPassword1());
 		return user;
 	}
-	
-	public List<User> convert(List<UserRegistrationDTO> dtos){
-		List<User> users = new ArrayList<User>();
-		for(UserRegistrationDTO dto : dtos) {
-			User user = new User();
-			user = convert(dto);
-			users.add(user);
-		}
-		return users;
-	}
-
 }

@@ -116,6 +116,22 @@ div.card.style1 div.image {
   }
 }
 
+div.card.style1 div.hover {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  width: 100%;
+  height: 100%;
+  border-radius: var(--imageBorderRadius);
+  z-index: 5;
+  transition: linear .1s;
+  opacity: 0;
+}
+
 
 /* 
 div.card.style1 div.image {

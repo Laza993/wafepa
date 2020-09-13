@@ -1,0 +1,37 @@
+<div ng-controller="PageCtrl">
+    
+    <div>
+        <h1>{{movie.original_title}}</h1>
+        
+        <p>{{movie.overview}}</p>
+        <p>{{movie.poster_path}}</p>
+        <p>{{movie.release_date}}</p>
+        <p>{{movie.vote_average}}</p>
+        <p>{{movie.production_countries.name}}</p>
+        <p>{{movie.genres.name}}</p>
+        <p>{{movie.budget}}</p>
+        <p>{{movie.popularity}}</p>
+        <p>{{movie.tagline}}</p>
+    </div>
+    
+    <div class="card" style="max-width: 500px;">
+        <div class="row no-gutters">
+            <div class="col-md-5" style="background: #868e96;">
+                <img src="/examples/images/sample.svg" class="card-img-top h-100" alt="...">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h5 class="card-title">Alice Liddel</h5>
+                    <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
+                    <a href="#" class="btn btn-primary stretched-link">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row logo-full justify-content-center">   
+        <img src="/app/img/tmdb/tmdb2.svg" style="width:500px;height:150px;">
+    </div>
+</div>

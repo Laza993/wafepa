@@ -39,12 +39,10 @@ angular.module("moviesController", []).controller("moviesCtrl", ['$http', '$scop
         $scope.imgPath = urlSearch;
         
         getMovies(urlSearch);
-        queryName = "&query=";
-        queryYear = "&year=";        
+                
    }
 
    
-
    var getMovies = function(url1){
        console.log(url1);
        
@@ -57,6 +55,10 @@ angular.module("moviesController", []).controller("moviesCtrl", ['$http', '$scop
                console.log("some error");
            }
        )
+   }
+
+   $scope.goToMovie = function(id){
+        $location.path('/movies/page/' + id);
    }
 
 }]);

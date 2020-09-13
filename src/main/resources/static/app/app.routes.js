@@ -6,6 +6,9 @@ angular.module("wafepaAppRoutes", []).config(['$routeProvider', function($routeP
 		.when('/movies', {
             templateUrl : 'app/core/movies/movies.html'
 		})
+		.when('/movies/page/:idMp', {
+            templateUrl : 'app/core/movies/moviePage.html'
+		})
 		.when('/about', {
             templateUrl : 'app/core/about/About.html'
 		})

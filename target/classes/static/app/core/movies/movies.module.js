@@ -1,4 +1,4 @@
-angular.module("WafepaMovies", ["moviesController"]);
+angular.module("WafepaMovies", ["moviesController", "moviePageCtrl"]);
 
 
 

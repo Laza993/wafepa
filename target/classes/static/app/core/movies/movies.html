@@ -17,28 +17,22 @@
 
 
     <div class="pageWraper">
-        <div ng-repeat="movie in movies.results" class="card style1">
+        <div ng-repeat="movie in movies.results" class="card card-body style1">
+            
             <div class="image">
                 <img src="https://image.tmdb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
                      alt="{{movie.original_title}}">
             </div>
 
             <div class="content">
-                <h2><a href="">{{movie.original_title}}</a></h2>
+                <h2 ng-click="goToMovie(movie.id)">{{movie.original_title}}</h2>
                 <p> {{movie.vote_average}} {{movie.release_date}}</p>
             </div>
         </div>
     </div>
 
-
-
     <div class="row logo-full justify-content-center">   
-
-            <img src="/app/img/tmdb/tmdb2.svg" style="width:500px;height:150px;text-align: center;">
-
+            <img src="/app/img/tmdb/tmdb2.svg" style="width:500px;height:150px;">
     </div>
-
-
-
 
 </div>
